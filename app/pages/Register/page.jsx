@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-function Register() {
+function Registration() {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -116,7 +116,7 @@ function Register() {
       });
 
       setTimeout(() => {
-        router.push("/login");
+        router.push("/pages/Login");
       }, 1500);
     } catch (error) {
       console.error(error);
@@ -718,4 +718,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Registration;

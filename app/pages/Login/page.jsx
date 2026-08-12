@@ -273,7 +273,7 @@ function Login() {
           {/* REGISTER */}
           <div className="register-link">
 
-            Don't have an account?{" "}
+            Dont have an account?{" "}
 
             <Link href="/register">
               Create Account
