@@ -18,5 +18,5 @@ export async function POST(req: Request) {
         return new Response(JSON.stringify({ message: "Invalid password" }), { status: 401 });
     }
 
-    return new Response(JSON.stringify({ message: "Login successful" }));
+    return new Response(JSON.stringify({ message: "Login successful", name: user.name }));
 }

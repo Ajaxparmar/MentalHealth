@@ -64,13 +64,15 @@ function Login() {
 
       setSuccess("Login successful! Redirecting...");
 
+      localStorage.setItem("userName", data.name);
+
       // Store login information if required
       if (rememberMe) {
         localStorage.setItem("userEmail", formData.email);
       }
 
       setTimeout(() => {
-        router.push("/");
+        router.push("/pages/Home");
       }, 1200);
     } catch (error) {
       console.error(error);
