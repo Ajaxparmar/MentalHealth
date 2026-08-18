@@ -1,376 +1,457 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 
 export default function Home() {
+
+  const [selectedMood, setSelectedMood] = useState("");
+
+  const moods = [
+    { emoji: "😊", name: "Happy" },
+    { emoji: "😌", name: "Calm" },
+    { emoji: "🙂", name: "Good" },
+    { emoji: "😐", name: "Okay" },
+    { emoji: "😔", name: "Sad" },
+    { emoji: "😟", name: "Stressed" },
+  ];
+
+  const activities = [
+    {
+      icon: "🎨",
+      title: "Color Game",
+      description: "Relax your mind with a simple color activity.",
+      bg: "bg-purple-100",
+      iconBg: "bg-purple-200",
+    },
+    {
+      icon: "🧩",
+      title: "Mind Game",
+      description: "Give your mind a little challenge and have fun.",
+      bg: "bg-blue-100",
+      iconBg: "bg-blue-200",
+    },
+    {
+      icon: "💚",
+      title: "Calm Game",
+      description: "Take a peaceful moment and slow things down.",
+      bg: "bg-green-100",
+      iconBg: "bg-green-200",
+    },
+  ];
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">
+    <main className="min-h-screen bg-[#f7f9fc] text-gray-800">
 
-      {/* ================= HERO SECTION ================= */}
-      <section className="min-h-screen flex items-center px-6 md:px-16 lg:px-24 py-16">
+      {/* ================= TOP AREA ================= */}
 
-        <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-5xl mx-auto px-5 sm:px-8 py-8">
 
-          {/* LEFT CONTENT */}
+        {/* Header */}
+
+        <div className="flex items-center justify-between mb-8">
+
           <div>
 
-            <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-5 py-2 rounded-full font-medium mb-6">
-              🌿 A Safe Space For Your Well-Being
-            </div>
+            <p className="text-sm text-gray-500 mb-1">
+              Your safe space
+            </p>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-gray-900">
-
-              Welcome to
-              <br />
-
-              <span className="text-purple-600">
-                MentalHealth
-              </span>
-
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              Home
             </h1>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-5">
-              Your mind matters.
+          </div>
+
+          <button
+            className="w-11 h-11 rounded-full bg-white shadow-sm
+                       flex items-center justify-center
+                       hover:shadow-md transition"
+          >
+            🔍
+          </button>
+
+        </div>
+
+
+        {/* ================= WELCOME CARD ================= */}
+
+        <section
+          className="relative overflow-hidden rounded-3xl
+                     bg-gradient-to-r from-purple-600 to-indigo-500
+                     text-white p-7 sm:p-10 shadow-lg mb-8"
+        >
+
+          {/* Decorative circles */}
+
+          <div className="absolute -right-16 -top-16
+                          w-44 h-44 rounded-full
+                          bg-white/10">
+          </div>
+
+          <div className="absolute -right-5 -bottom-20
+                          w-48 h-48 rounded-full
+                          bg-white/10">
+          </div>
+
+
+          <div className="relative z-10 max-w-2xl">
+
+            <p className="text-purple-100 text-sm font-medium mb-2">
+              🌿 A moment for yourself
+            </p>
+
+            <h2 className="text-3xl sm:text-4xl font-bold">
+              Welcome to your
+              <br />
+              Mental Health Space 💜
             </h2>
 
-            <p className="text-lg text-gray-600 leading-relaxed mt-6 max-w-xl">
-              Take a moment for yourself. Understand your emotions,
-              reflect on your feelings, and discover simple ways to
-              support your mental well-being.
+            <p className="mt-4 text-purple-100 leading-relaxed">
+              Take a moment to check in with yourself.
+              Understanding how you feel is the first step
+              toward taking better care of your mind.
             </p>
 
-            <p className="text-gray-500 mt-4 max-w-xl">
-              Our platform provides a comfortable space where you can
-              answer thoughtful questions, understand your responses,
-              and receive supportive guidance.
-            </p>
+          </div>
 
-            {/* BUTTONS */}
-            <div className="flex flex-wrap gap-4 mt-8">
+        </section>
 
-              <Link
-                href="/register"
-                className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg transition duration-300"
-              >
-                Get Started →
-              </Link>
 
-              <Link
-                href="/login"
-                className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-4 rounded-xl font-semibold text-lg transition duration-300"
-              >
-                Login
-              </Link>
+        {/* ================= QUOTE ================= */}
+
+        <section className="bg-white rounded-3xl p-6 sm:p-8
+                            shadow-sm border border-gray-100 mb-8">
+
+          <div className="flex gap-5 items-start">
+
+            <div className="w-12 h-12 flex-shrink-0
+                            rounded-2xl bg-purple-100
+                            flex items-center justify-center text-2xl">
+              💜
+            </div>
+
+            <div>
+
+              <p className="text-lg sm:text-xl font-medium
+                            text-gray-800 leading-relaxed">
+                “Your mental health is a priority.
+                Your happiness is essential.
+                Your self-care is necessary.”
+              </p>
+
+              <p className="text-sm text-gray-400 mt-3">
+                — Take care of yourself, one day at a time.
+              </p>
 
             </div>
 
-            {/* TRUST MESSAGE */}
-            <div className="flex flex-wrap gap-6 mt-8 text-gray-500">
+          </div>
 
-              <div className="flex items-center gap-2">
-                <span className="text-xl">🔒</span>
-                <span>Private & Secure</span>
-              </div>
+        </section>
 
-              <div className="flex items-center gap-2">
-                <span className="text-xl">💜</span>
-                <span>Supportive Environment</span>
-              </div>
+
+        {/* ================= MOOD ================= */}
+
+        <section className="mb-10">
+
+          <div className="text-center mb-6">
+
+            <p className="text-purple-600 font-semibold text-sm
+                          uppercase tracking-wider">
+              Daily Check-In
+            </p>
+
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2">
+              How do you feel today?
+            </h2>
+
+            <p className="text-gray-500 mt-2">
+              Choose the feeling that best describes your mood.
+            </p>
+
+          </div>
+
+
+          {/* Mood buttons */}
+
+          <div className="flex justify-center gap-3 sm:gap-5
+                          flex-wrap">
+
+            {moods.map((mood) => (
+
+              <button
+                key={mood.name}
+                onClick={() => setSelectedMood(mood.name)}
+                className={`
+                  w-20 h-24 sm:w-24 sm:h-28
+                  rounded-2xl
+                  flex flex-col items-center justify-center
+                  border-2
+                  transition-all duration-200
+                  hover:-translate-y-1
+                  hover:shadow-md
+                  ${
+                    selectedMood === mood.name
+                      ? "bg-purple-100 border-purple-500 shadow-lg scale-105"
+                      : "bg-white border-gray-100"
+                  }
+                `}
+              >
+
+                <span className="text-4xl sm:text-5xl">
+                  {mood.emoji}
+                </span>
+
+                <span className="text-xs sm:text-sm
+                                 font-medium text-gray-600 mt-2">
+                  {mood.name}
+                </span>
+
+              </button>
+
+            ))}
+
+          </div>
+
+
+          {/* Selected mood message */}
+
+          {selectedMood && (
+
+            <div className="mt-6 text-center">
+
+              <span className="inline-flex items-center gap-2
+                               bg-purple-50 text-purple-700
+                               px-5 py-3 rounded-full
+                               text-sm font-medium">
+
+                💜 You're feeling {selectedMood.toLowerCase()} today
+
+              </span>
+
+            </div>
+
+          )}
+
+        </section>
+
+
+        {/* ================= ACTIVITIES ================= */}
+
+        <section className="mb-10">
+
+          <div className="flex items-end justify-between mb-5">
+
+            <div>
+
+              <p className="text-purple-600 text-sm font-semibold">
+                ACTIVITIES
+              </p>
+
+              <h2 className="text-2xl font-bold text-gray-900 mt-1">
+                Take a mindful break
+              </h2>
 
             </div>
 
           </div>
 
 
-          {/* RIGHT IMAGE */}
-          <div className="relative flex justify-center">
+          <div className="grid sm:grid-cols-3 gap-5">
 
-            {/* Background Circle */}
-            <div className="absolute w-80 h-80 md:w-[480px] md:h-[480px] bg-purple-200 rounded-full opacity-50 blur-2xl">
-            </div>
+            {activities.map((activity) => (
 
-            {/* Image Card */}
-            <div className="relative bg-white p-4 rounded-[35px] shadow-2xl max-w-lg">
+              <button
+                key={activity.title}
+                className={`
+                  ${activity.bg}
+                  text-left rounded-3xl p-6
+                  border border-white
+                  hover:shadow-lg
+                  hover:-translate-y-1
+                  transition-all duration-300
+                `}
+              >
 
-              <img
-                src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=900&q=80"
-                alt="Person relaxing and taking care of mental wellness"
-                className="rounded-[25px] w-full h-[400px] object-cover"
-              />
-
-              {/* Floating Card */}
-              <div className="absolute -left-8 top-16 bg-white shadow-xl rounded-2xl px-5 py-4 flex items-center gap-3">
-
-                <div className="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center text-2xl">
-                  💜
+                <div
+                  className={`
+                    ${activity.iconBg}
+                    w-16 h-16 rounded-2xl
+                    flex items-center justify-center
+                    text-3xl mb-5
+                  `}
+                >
+                  {activity.icon}
                 </div>
 
-                <div>
-                  <p className="font-bold text-gray-800">
-                    You are not alone
-                  </p>
+                <h3 className="text-lg font-bold text-gray-900">
+                  {activity.title}
+                </h3>
 
-                  <p className="text-sm text-gray-500">
-                    Your feelings matter
-                  </p>
+                <p className="text-sm text-gray-600 mt-2 leading-relaxed">
+                  {activity.description}
+                </p>
+
+                <div className="mt-5 text-sm font-semibold text-purple-700">
+                  Start activity →
                 </div>
 
-              </div>
+              </button>
 
-
-              {/* Bottom Card */}
-              <div className="absolute -right-6 bottom-10 bg-white shadow-xl rounded-2xl px-5 py-4">
-
-                <p className="font-semibold text-gray-800">
-                  🌱 One step at a time
-                </p>
-
-                <p className="text-sm text-gray-500">
-                  Take care of yourself
-                </p>
-
-              </div>
-
-            </div>
+            ))}
 
           </div>
 
-        </div>
-
-      </section>
+        </section>
 
 
-      {/* ================= ABOUT SECTION ================= */}
-      <section className="bg-white py-20 px-6">
+        {/* ================= AI ASSISTANT ================= */}
 
-        <div className="max-w-6xl mx-auto text-center">
+        <section
+          className="rounded-3xl bg-gradient-to-br
+                     from-green-50 to-emerald-100
+                     border border-green-100
+                     p-7 sm:p-9 mb-10"
+        >
 
-          <p className="text-purple-600 font-semibold tracking-widest">
-            UNDERSTANDING MENTAL HEALTH
-          </p>
+          <div className="flex flex-col sm:flex-row
+                          items-center gap-6">
 
-          <h2 className="text-4xl font-bold text-gray-900 mt-3">
-            Your mental health deserves attention.
-          </h2>
+            <div className="w-20 h-20 rounded-3xl
+                            bg-white shadow-sm
+                            flex items-center justify-center
+                            text-5xl flex-shrink-0">
+              🤖
+            </div>
 
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto mt-6 leading-relaxed">
-            Mental health affects how we think, feel, behave, manage
-            stress, build relationships, and respond to everyday
-            experiences. Taking care of your mental well-being is
-            an important part of living a healthy and balanced life.
-          </p>
+            <div className="flex-1 text-center sm:text-left">
 
+              <p className="text-green-600 text-sm font-semibold">
+                YOUR AI COMPANION
+              </p>
 
-          {/* CARDS */}
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
+              <h2 className="text-2xl font-bold text-gray-900 mt-1">
+                Need someone to talk to?
+              </h2>
 
-            {/* CARD 1 */}
-            <div className="bg-purple-50 rounded-3xl p-8 hover:shadow-xl transition">
-
-              <div className="text-5xl mb-5">
-                🧠
-              </div>
-
-              <h3 className="text-xl font-bold text-gray-900">
-                Understand Your Mind
-              </h3>
-
-              <p className="text-gray-600 mt-3 leading-relaxed">
-                Learn to recognize your emotions, thoughts and
-                everyday experiences.
+              <p className="text-gray-600 mt-2">
+                Share what you're feeling and take a moment
+                to reflect. Your thoughts deserve to be heard.
               </p>
 
             </div>
 
-
-            {/* CARD 2 */}
-            <div className="bg-blue-50 rounded-3xl p-8 hover:shadow-xl transition">
-
-              <div className="text-5xl mb-5">
-                🌿
-              </div>
-
-              <h3 className="text-xl font-bold text-gray-900">
-                Manage Stress
-              </h3>
-
-              <p className="text-gray-600 mt-3 leading-relaxed">
-                Discover healthy habits that can help you manage
-                everyday stress and challenges.
-              </p>
-
-            </div>
-
-
-            {/* CARD 3 */}
-            <div className="bg-pink-50 rounded-3xl p-8 hover:shadow-xl transition">
-
-              <div className="text-5xl mb-5">
-                💬
-              </div>
-
-              <h3 className="text-xl font-bold text-gray-900">
-                Express Your Feelings
-              </h3>
-
-              <p className="text-gray-600 mt-3 leading-relaxed">
-                Taking time to acknowledge and express your feelings
-                can be an important part of self-care.
-              </p>
-
-            </div>
+            <button
+              className="bg-green-600 hover:bg-green-700
+                         text-white px-6 py-3 rounded-xl
+                         font-semibold shadow-sm
+                         transition"
+            >
+              Talk to AI 💬
+              
+            </button>
 
           </div>
 
-        </div>
-
-      </section>
+        </section>
 
 
-      {/* ================= HOW IT WORKS ================= */}
-      <section className="py-20 px-6 bg-gradient-to-r from-purple-50 to-blue-50">
+        {/* ================= SELF CARE ================= */}
 
-        <div className="max-w-6xl mx-auto text-center">
+        <section className="mb-10">
 
-          <p className="text-purple-600 font-semibold tracking-widest">
-            HOW IT WORKS
-          </p>
+          <div className="text-center mb-6">
 
-          <h2 className="text-4xl font-bold text-gray-900 mt-3">
-            A simple journey toward self-awareness
-          </h2>
-
-
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-
-            <div className="bg-white rounded-3xl p-8 shadow-md">
-
-              <div className="text-4xl font-bold text-purple-600">
-                01
-              </div>
-
-              <h3 className="text-xl font-bold mt-4">
-                Create Your Account
-              </h3>
-
-              <p className="text-gray-600 mt-3">
-                Register to begin your personal well-being journey.
-              </p>
-
-            </div>
-
-
-            <div className="bg-white rounded-3xl p-8 shadow-md">
-
-              <div className="text-4xl font-bold text-purple-600">
-                02
-              </div>
-
-              <h3 className="text-xl font-bold mt-4">
-                Answer Questions
-              </h3>
-
-              <p className="text-gray-600 mt-3">
-                Answer simple questions about your thoughts,
-                emotions and daily experiences.
-              </p>
-
-            </div>
-
-
-            <div className="bg-white rounded-3xl p-8 shadow-md">
-
-              <div className="text-4xl font-bold text-purple-600">
-                03
-              </div>
-
-              <h3 className="text-xl font-bold mt-4">
-                Understand Your Results
-              </h3>
-
-              <p className="text-gray-600 mt-3">
-                Reflect on your responses and receive supportive
-                guidance.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= CTA ================= */}
-      <section className="py-24 px-6 bg-purple-600 text-white text-center">
-
-        <div className="max-w-3xl mx-auto">
-
-          <div className="text-5xl">
-            💜
-          </div>
-
-          <h2 className="text-4xl md:text-5xl font-bold mt-5">
-            Take the first step today.
-          </h2>
-
-          <p className="text-purple-100 text-lg mt-5">
-            Give yourself a few moments to reflect, understand
-            and care for your mental well-being.
-          </p>
-
-          <Link
-            href="/register"
-            className="inline-block mt-8 bg-white text-purple-600 px-9 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition"
-          >
-            Start Your Journey →
-          </Link>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= DISCLAIMER ================= */}
-      <section className="bg-gray-50 py-8 px-6">
-
-        <div className="max-w-4xl mx-auto text-center">
-
-          <p className="text-sm text-gray-500 leading-relaxed">
-            <strong>Important:</strong> This website is designed for
-            self-reflection and general well-being awareness. It is
-            not intended to diagnose, treat, or replace professional
-            mental-health care.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      {/* ================= FOOTER ================= */}
-      <footer className="bg-gray-900 text-white py-10 px-6">
-
-        <div className="max-w-6xl mx-auto text-center">
-
-          <div className="text-2xl font-bold">
-            🧠 MentalHealth
-          </div>
-
-          <p className="text-gray-400 mt-3">
-            Your mind matters. Take care of yourself.
-          </p>
-
-          <div className="border-t border-gray-700 mt-8 pt-6">
-
-            <p className="text-gray-500 text-sm">
-              © 2026 MentalHealth. All rights reserved.
+            <p className="text-purple-600 text-sm font-semibold">
+              SELF CARE
             </p>
 
+            <h2 className="text-2xl font-bold mt-1">
+              Small things can make a difference
+            </h2>
+
           </div>
 
-        </div>
 
-      </footer>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+
+            <div className="bg-white rounded-2xl p-5 text-center
+                            shadow-sm border border-gray-100">
+              <div className="text-3xl">😴</div>
+              <p className="font-medium mt-3 text-sm">
+                Get enough sleep
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-5 text-center
+                            shadow-sm border border-gray-100">
+              <div className="text-3xl">🚶</div>
+              <p className="font-medium mt-3 text-sm">
+                Stay active
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-5 text-center
+                            shadow-sm border border-gray-100">
+              <div className="text-3xl">💧</div>
+              <p className="font-medium mt-3 text-sm">
+                Stay hydrated
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-5 text-center
+                            shadow-sm border border-gray-100">
+              <div className="text-3xl">🧘</div>
+              <p className="font-medium mt-3 text-sm">
+                Take a breath
+              </p>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        {/* ================= FINAL MESSAGE ================= */}
+
+        <section className="text-center py-8">
+
+          <div className="text-4xl mb-4">
+            🌱
+          </div>
+
+          <h2 className="text-2xl font-bold text-gray-900">
+            Be patient with yourself.
+          </h2>
+
+          <p className="text-gray-500 mt-3 max-w-xl mx-auto">
+            Healing and growth take time. You don't have to
+            have everything figured out today.
+          </p>
+
+          <p className="text-purple-600 font-semibold mt-5">
+            “One small step is still a step forward.” 💜
+          </p>
+
+        </section>
+
+
+        {/* ================= FOOTER ================= */}
+
+        <footer className="border-t border-gray-200 pt-6 pb-4
+                           text-center">
+
+          <p className="text-sm text-gray-400">
+            🧠 Mental Health Assistant
+          </p>
+
+          <p className="text-xs text-gray-400 mt-2">
+            A space for reflection and general well-being.
+          </p>
+
+        </footer>
+
+      </div>
 
     </main>
   );
