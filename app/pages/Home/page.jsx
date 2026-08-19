@@ -347,7 +347,7 @@ export default function Home() {
                          font-semibold shadow-sm
                          transition"
             >
-              Talk to AI 💬
+              ChatBot
               
             </button>
 

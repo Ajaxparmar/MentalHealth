@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-purple-100 bg-white shadow-sm">

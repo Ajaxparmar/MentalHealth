@@ -1,47 +1,57 @@
 import Groq from "groq-sdk";
+import { NextResponse } from "next/server";
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
-export async function POST(req: Request) {
+export async function POST(request) {
   try {
-    const { messages } = await req.json();
+    const { message } = await request.json();
 
-    const completion = await groq.chat.completions.create({
-      model: "openai/gpt-oss-20b",
+    if (!message) {
+      return NextResponse.json(
+        { error: "Message is required" },
+        { status: 400 }
+      );
+    }
+
+    const chatCompletion = await groq.chat.completions.create({
       messages: [
         {
           role: "system",
           content: `
-You are a friendly mental wellness assistant.
+You are a friendly mental health support assistant.
 
 Your job is to:
-- Listen carefully and respond with empathy.
-- Help users reflect on their feelings.
-- Suggest simple healthy coping strategies such as breathing,
-  taking a break, journaling, talking to someone trusted, or relaxing.
-- Never diagnose mental health conditions.
-- Do not pretend to be a doctor or therapist.
-- Encourage users to talk to a trusted adult or qualified professional
-  when they need additional support.
-- Keep responses clear, warm and not too long.
-          `,
+- Listen to the user's feelings.
+- Respond with empathy and kindness.
+- Give general wellness and self-care suggestions.
+- Encourage the user to talk to a trusted person or qualified professional when appropriate.
+- Never claim to diagnose a mental health condition.
+- Keep responses simple, supportive and easy to understand.
+        `,
         },
-        ...messages,
+        {
+          role: "user",
+          content: message,
+        },
       ],
+
+      model: "openai/gpt-oss-20b",
     });
 
     const reply =
-      completion.choices[0]?.message?.content ||
-      "I'm here to listen. Tell me what's on your mind.";
+      chatCompletion.choices[0]?.message?.content ||
+      "I'm here to listen. Tell me how you're feeling.";
 
-    return Response.json({ reply });
+    return NextResponse.json({ reply });
+
   } catch (error) {
-    console.error("Groq error:", error);
+    console.error("Groq Error:", error);
 
-    return Response.json(
-      { error: "Unable to get a response right now." },
+    return NextResponse.json(
+      { error: "Something went wrong with the AI assistant." },
       { status: 500 }
     );
   }
