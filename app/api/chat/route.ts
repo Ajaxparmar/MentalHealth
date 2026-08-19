@@ -7,51 +7,77 @@ const groq = new Groq({
 
 export async function POST(request) {
   try {
-    const { message } = await request.json();
+    const body = await request.json();
 
-    if (!message) {
+    const messages = body.messages;
+
+    // Check messages
+    if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json(
-        { error: "Message is required" },
+        { error: "Messages are required" },
         { status: 400 }
       );
     }
+
+    // Keep only valid messages
+    const validMessages = messages
+      .filter(
+        (item) =>
+          item &&
+          (item.role === "user" || item.role === "assistant") &&
+          typeof item.content === "string" &&
+          item.content.trim()
+      )
+      .map((item) => ({
+        role: item.role,
+        content: item.content,
+      }));
 
     const chatCompletion = await groq.chat.completions.create({
       messages: [
         {
           role: "system",
           content: `
-You are a friendly mental health support assistant.
+You are a friendly Mental Health AI Assistant.
 
-Your job is to:
-- Listen to the user's feelings.
-- Respond with empathy and kindness.
-- Give general wellness and self-care suggestions.
-- Encourage the user to talk to a trusted person or qualified professional when appropriate.
-- Never claim to diagnose a mental health condition.
-- Keep responses simple, supportive and easy to understand.
-        `,
+Your purpose is to provide general emotional support and
+wellness guidance.
+
+Rules:
+- Be kind, calm and empathetic.
+- Listen carefully to what the user says.
+- Give simple and practical wellness suggestions.
+- Do not diagnose mental health conditions.
+- Do not pretend to be a doctor or therapist.
+- Encourage professional help when appropriate.
+- Never judge the user.
+- Keep responses understandable and supportive.
+          `,
         },
-        {
-          role: "user",
-          content: message,
-        },
+
+        ...validMessages,
       ],
 
       model: "openai/gpt-oss-20b",
     });
 
     const reply =
-      chatCompletion.choices[0]?.message?.content ||
-      "I'm here to listen. Tell me how you're feeling.";
+      chatCompletion.choices?.[0]?.message?.content ||
+      "I'm here to listen. Tell me what's on your mind. 💜";
 
-    return NextResponse.json({ reply });
+    return NextResponse.json({
+      reply,
+    });
 
   } catch (error) {
-    console.error("Groq Error:", error);
+    console.error("Groq API Error:", error);
 
     return NextResponse.json(
-      { error: "Something went wrong with the AI assistant." },
+      {
+        error:
+          error?.message ||
+          "Unable to get a response from the AI assistant.",
+      },
       { status: 500 }
     );
   }
